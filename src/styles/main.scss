@@ -1,5 +1,23 @@
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Grand+Hotel&display=swap');
 
 body {
   background-color: #F5F5F5;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+#sBrand {
+  background: red;
+  width: 2em;
+  height: 2em;
+  border-radius: 1em;
+  color: white;
+  text-align: center;
+  margin: 0;
+  font-family: 'Grand Hotel', cursive;
+  font-weight: bold;
 }

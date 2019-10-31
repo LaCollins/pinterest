@@ -1,8 +1,9 @@
 import 'bootstrap';
 import '../styles/main.scss';
+import myNavBar from './components/myNavBar/myNavBar';
 
 const init = () => {
-  console.log('Squidterest');
+  myNavBar.printButton();
 };
 
 init();
