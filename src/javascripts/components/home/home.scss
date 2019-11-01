@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Grand+Hotel&display=swap');
+
+#loginButton {
+  img {
+    height: 30px;
+  }
+}
+
+#homePage {
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
+  #squidPic {
+    width: 200px;
+  }
+
+  h1 {
+    margin-left: -120px;
+    font-family: 'Grand Hotel', cursive;
+    margin-top: .5em;
+  }
+}

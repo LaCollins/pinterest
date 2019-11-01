@@ -1,8 +1,10 @@
 import 'bootstrap';
 import '../styles/main.scss';
 
+import home from './components/home/home';
+
 const init = () => {
-  console.log('Squidterest');
+  home.printHome();
 };
 
 init();
