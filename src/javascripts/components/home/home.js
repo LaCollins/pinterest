@@ -1,6 +1,5 @@
 import squid from './images/squid.png';
 import utilities from '../../helpers/utilities';
-import googleLogo from './images/GoogleLogo.png';
 import './home.scss';
 
 const printMainPage = () => {
@@ -8,13 +7,7 @@ const printMainPage = () => {
   utilities.printToDom('homePage', domString);
 };
 
-const printButton = () => {
-  const domString = `<button class="btn btn-dark" id="loginButton"><img src=${googleLogo}>Login</button>`;
-  utilities.printToDom('logButton', domString);
-};
-
 const printHome = () => {
-  printButton();
   printMainPage();
 };
 
