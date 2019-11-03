@@ -1,0 +1,44 @@
+{
+  "board1": {
+    "name": "Horses",
+    "uid": "authentication1",
+    "isPrivate": "true",
+    "description": "All about horses."
+  },
+  "board2": {
+    "name": "Sea Horses",
+    "uid": "authentication2",
+    "isPrivate": "true",
+    "description": "All about sea horses."
+  },
+  "board3": {
+    "name": "Crafts",
+    "uid": "authentication1",
+    "isPrivate": "true",
+    "description": "Things I'd like to make but will never have the time, money, or energy to make."
+  },
+  "board4": {
+    "name": "Recipes",
+    "uid": "authentication2",
+    "isPrivate": "true",
+    "description": "Food I would like to make but never will."
+  },
+  "board5": {
+    "name": "Clothes",
+    "uid": "authentication1",
+    "isPrivate": "true",
+    "description": "Clothes I wish I could wear but since they look 100 times better on the models than they will on me, I will never make a purchase."
+  },
+  "board6": {
+    "name": "Cyber Goth",
+    "uid": "authentication2",
+    "isPrivate": "true",
+    "description": "Because regular goth just isn't cool enough."
+  },
+  "board7": {
+    "name": "Plants",
+    "uid": "authentication3",
+    "isPrivate": "true",
+    "description": "things that grow"
+  }
+}
