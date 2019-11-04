@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import $ from 'jquery';
+import smash from './smash';
 
 const loginDiv = $('#loginDiv');
 const boardsDiv = $('#boards');
@@ -14,6 +15,7 @@ const checkLoginStatus = () => {
       boardsDiv.removeClass('hide');
       logOut.removeClass('hide');
       logo.addClass('hide');
+      smash.getCompleteBoards();
     } else {
       logo.removeClass('hide');
       loginDiv.removeClass('hide');

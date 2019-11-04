@@ -7,8 +7,4 @@ const printMainPage = () => {
   utilities.printToDom('homePage', domString);
 };
 
-const printHome = () => {
-  printMainPage();
-};
-
-export default { printHome };
+export default { printMainPage };

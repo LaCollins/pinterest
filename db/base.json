@@ -1,5 +1,5 @@
 {
-  "autentication" : "auth",
+  "authentication" : "auth",
   "users": "user",
   "pins": "pins",
   "boards": "boards",

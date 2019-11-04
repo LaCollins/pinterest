@@ -39,4 +39,10 @@ const printBoards = () => {
   utilities.printToDom('boards', domString);
 };
 
-export default { loginButton, logoutEvent, printBoards };
+const printBoardView = () => {
+  logoutEvent();
+  loginButton();
+  printBoards();
+};
+
+export default { printBoardView };
