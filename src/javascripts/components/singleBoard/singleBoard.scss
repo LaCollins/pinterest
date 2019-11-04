@@ -1,0 +1,14 @@
+#board-section {
+  text-align: center;
+
+  .card {
+    padding: 0;
+  }
+
+  img {
+    justify-content: center;
+    flex: wrap;
+    width: 33%;
+    margin: 2px;
+  }
+}
