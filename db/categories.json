@@ -1,0 +1,22 @@
+{
+  "category1": {
+    "type": "animals",
+    "description": "all animals"
+  },
+  "category2": {
+    "type": "fashion",
+    "description": "various fashions"
+  },
+  "category3": {
+    "type": "diy",
+    "description": "crafts and things"
+  },
+  "category4": {
+    "type": "culinary",
+    "description": "foodstuffs"
+  },
+  "category5": {
+    "type": "flowers",
+    "description": "flowery things"
+  }
+}

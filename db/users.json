@@ -1,0 +1,18 @@
+{
+  "user1": {
+    "name": "Setsuki Korinzu",
+    "email": "cyberchyk@gmail.com",
+    "location": "Clarksville, TN",
+    "imageUrl": "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/68608455_10114151174953890_144136207645802496_n.jpg?_nc_cat=100&_nc_oc=AQmipEqbA7Lul2z7DBLFlwoPsEFUaEz8WeCMmwbS8MgW17oEMUXmC1nfZVNKH1q2Qtw&_nc_ht=scontent-atl3-1.xx&oh=d8728c486f7fdc0973091c5fb75a874c&oe=5E645AEB",
+    "joinDate": "11-3-2019",
+    "uid": "authentication1"
+  },
+  "user2": {
+    "name": "Laura Collins",
+    "email": "laura.e.collins1@gmail.com",
+    "location": "Clarksville, TN",
+    "imageUrl": "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/67407722_10114143870791490_3253034240312344576_n.jpg?_nc_cat=100&_nc_oc=AQm86S138E1Zv03MaugB7Rz1Y-_Jfs6UgmfqHiYnRhTpqfZxqz8PZtBRjerYVq1rLhI&_nc_ht=scontent-atl3-1.xx&oh=a00dac18519fedf71566c9b83cc18b03&oe=5E5C026B",
+    "joinDate": "11-3-2019",
+    "uid": "authentication2"
+  }
+}
