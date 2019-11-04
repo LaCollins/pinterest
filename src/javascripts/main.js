@@ -9,7 +9,7 @@ import authData from './helpers/data/authData';
 import uidData from './helpers/data/uidData';
 import pinData from './helpers/data/pinData';
 import categoryData from './helpers/data/categoryData';
-// import singleBoard from './components/singleBoard/singleBoard';
+import singleBoard from './components/singleBoard/singleBoard';
 
 const init = () => {
   firebase.initializeApp(apiKeys.firebaseKeys);
@@ -19,7 +19,7 @@ const init = () => {
   uidData.getUidData();
   pinData.getPinData();
   categoryData.getCategoryData();
-  // singleBoard.makeTheBoards();
+  singleBoard.singleBoardView();
 };
 
 init();
