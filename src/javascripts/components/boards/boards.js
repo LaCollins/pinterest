@@ -35,7 +35,8 @@ const logoutEvent = () => {
 };
 
 const printBoards = () => {
-  const domString = '<h1>Boards</h1>';
+  let domString = '<h1>Boards</h1>';
+  domString += '<div id="board-section" class="d-flex flex-wrap"></div>';
   utilities.printToDom('boards', domString);
 };
 
