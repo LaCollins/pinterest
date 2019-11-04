@@ -1,4 +1,5 @@
 import './singleBoard.scss';
+import $ from 'jquery';
 import smash from '../../helpers/data/smash';
 import utilities from '../../helpers/utilities';
 import pins from '../pins/pins';
@@ -8,9 +9,9 @@ const makeTheBoards = () => {
     .then((boards) => {
       let domString = '';
       boards.forEach((board) => {
-        domString += '<div class="card col-4">';
+        domString += `<div class="card col-4" id="${board.id}Card">`;
         domString += `<h5 class="card-title">${board.name}</h5>`;
-        domString += `<div id="${board.id}"></div>`;
+        domString += `<div id="${board.id}imgs"></div>`;
         domString += `<div class="card-body">
                       <p class="card-text">${board.description}</p>
                     </div>`;
@@ -22,4 +23,27 @@ const makeTheBoards = () => {
     .catch((error) => console.error(error));
 };
 
-export default { makeTheBoards };
+const singleBoardView = () => {
+  $('body').on('click', '.card', (e) => {
+    const cardId = e.target.parentElement.id;
+    const secondId = e.target.parentElement.parentElement.id;
+    let domString = '';
+    smash.getCompleteBoards().then((boards) => {
+      boards.forEach((board) => {
+        if (cardId === `${board.id}Card` || secondId === `${board.id}Card`) {
+          domString += `<div class="card col-12" id="${board.id}Card">`;
+          domString += `<h5 class="card-title">${board.name}</h5>`;
+          domString += `<div id="${board.id}imgs"></div>`;
+          domString += `<div class="card-body">
+                        <p class="card-text">${board.description}</p>
+                      </div>`;
+          domString += '</div>';
+          utilities.printToDom('board-section', domString);
+          pins.getMyPins(board.id);
+        }
+      });
+    });
+  });
+};
+
+export default { makeTheBoards, singleBoardView };

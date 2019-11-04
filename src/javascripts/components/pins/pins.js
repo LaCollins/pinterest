@@ -12,7 +12,7 @@ const getMyPins = (boardId) => new Promise((resolve, reject) => {
         domString += '';
       }
       resolve(domString);
-      utilities.printToDom(boardId, domString);
+      utilities.printToDom(`${boardId}imgs`, domString);
     });
   })
     .catch((error) => reject(error));
