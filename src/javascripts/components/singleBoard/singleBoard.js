@@ -31,6 +31,7 @@ const singleBoardView = () => {
     smash.getCompleteBoards().then((boards) => {
       boards.forEach((board) => {
         if (cardId === `${board.id}Card` || secondId === `${board.id}Card`) {
+          domString += '<div id="buttonBox" class="container"><button class="btn btn-dark" id="goBack">All Boards</button></div>';
           domString += `<div class="card col-12" id="${board.id}Card">`;
           domString += `<h5 class="card-title">${board.name}</h5>`;
           domString += `<div id="${board.id}imgs"></div>`;
@@ -46,4 +47,13 @@ const singleBoardView = () => {
   });
 };
 
-export default { makeTheBoards, singleBoardView };
+const returnToMain = () => {
+  $('body').on('click', (e) => {
+    const target = e.target.id;
+    if (target === 'goBack' || target === 'sBrand') {
+      makeTheBoards();
+    }
+  });
+};
+
+export default { makeTheBoards, singleBoardView, returnToMain };

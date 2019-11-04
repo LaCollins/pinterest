@@ -20,6 +20,7 @@ const init = () => {
   pinData.getPinData();
   categoryData.getCategoryData();
   singleBoard.singleBoardView();
+  singleBoard.returnToMain();
 };
 
 init();
