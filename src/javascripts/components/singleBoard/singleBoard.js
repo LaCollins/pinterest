@@ -11,7 +11,7 @@ const makeTheBoards = () => {
       boards.forEach((board) => {
         domString += `<div class="card col-4" id="${board.id}Card">`;
         domString += `<h5 class="card-title">${board.name}</h5>`;
-        domString += `<div id="${board.id}imgs"></div>`;
+        domString += `<div id="${board.id}imgs" class="thumbnails"></div>`;
         domString += `<div class="card-body">
                       <p class="card-text">${board.description}</p>
                     </div>`;
@@ -34,7 +34,7 @@ const singleBoardView = () => {
           domString += '<div id="buttonBox" class="container"><button class="btn btn-dark" id="goBack">All Boards</button></div>';
           domString += `<div class="card col-12" id="${board.id}Card">`;
           domString += `<h5 class="card-title">${board.name}</h5>`;
-          domString += `<div id="${board.id}imgs"></div>`;
+          domString += `<div id="${board.id}imgs" class="row"></div>`;
           domString += `<div class="card-body">
                         <p class="card-text">${board.description}</p>
                       </div>`;
