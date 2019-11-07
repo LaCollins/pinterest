@@ -1,0 +1,27 @@
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.imgDelete {
+  color: red;
+  font-weight: bolder;
+  position: absolute;
+  margin: 8px 0 0 36%;
+  overflow: hidden;
+  background: #F5F5F5;
+  border-radius: 2em;
+  width: 25px;
+  height: 25px;
+  opacity: 0.75;
+  cursor: default;
+}
+
+.single-pin {
+  margin: 0;
+  box-sizing: border-box;
+  width: 40%;
+  padding: 0%;
+  margin: .5em auto;
+}
