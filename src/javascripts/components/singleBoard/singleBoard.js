@@ -8,6 +8,7 @@ import pins from '../pins/pins';
 import pinData from '../../helpers/data/pinData';
 import boardData from '../../helpers/data/boardData';
 
+
 const deleteBoard = (e) => {
   e.stopImmediatePropagation();
   const { uid } = firebase.auth().currentUser;
@@ -123,4 +124,8 @@ const returnToMain = () => {
   });
 };
 
-export default { makeTheBoards, singleBoardView, returnToMain };
+export default {
+  makeTheBoards,
+  singleBoardView,
+  returnToMain,
+};
