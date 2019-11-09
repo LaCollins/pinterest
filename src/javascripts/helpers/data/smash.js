@@ -7,12 +7,16 @@ const getCompleteBoards = (uid) => new Promise((resolve, reject) => {
   uidData.getUidData(uid)
     .then((singleUser) => {
       boardData.getBoardData(singleUser[0].id).then((boards) => {
-        const newBoard = [];
-        boards.forEach((board) => {
-          const newB = { ...board };
-          newBoard.push(newB);
-          resolve(newBoard);
-        });
+        let newBoard = [];
+        if (boards.length > 0) {
+          boards.forEach((board) => {
+            const newB = { ...board };
+            newBoard.push(newB);
+          });
+        } else {
+          newBoard = [];
+        }
+        resolve(newBoard);
       });
     })
     .catch((error) => reject(error));
