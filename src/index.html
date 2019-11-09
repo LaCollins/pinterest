@@ -17,5 +17,52 @@
       <div id="mainView">
       <div id="homePage"></div></div>
       <div id="boards" class="hide container"></div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">New Pin</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="pin-name">Name</label>
+                  <input type="text" class="form-control" id="pin-name" placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                  <label for="image-url">Image Url</label>
+                  <input type="text" class="form-control" id="image-url" placeholder="Enter Image URL">
+                </div>
+                <div class="form-group">
+                  <label for="site-url">Website Url</label>
+                  <input type="text" class="form-control" id="site-url" placeholder="Enter Site Url">
+                </div>
+                <div class="form-group">
+                  <label for="pin-description">Description</label>
+                  <input type="text" class="form-control" id="pin-description" placeholder="Enter Pin Description">
+                </div>
+                <div class="form-row align-items-center">
+                  <div class="col-auto my-1" id="categoryOptions">  <label class="mr-sm-1" for="inlineFormCustomSelect">Category</label>
+                    <select class="custom-select mr-sm-1" id="inlineFormCustomSelect">
+                      </select>
+                  </div></div>
+                <div class="form-row align-items-center">
+                  <div class="col-auto my-1" id="boardOptions">  <label class="mr-sm-1" for="inlineFormCustomSelect2">Board</label>
+                    <select class="custom-select mr-sm-1" id="inlineFormCustomSelect2">
+                      </select>
+                  </div></div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="add-new-pin">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 </html>

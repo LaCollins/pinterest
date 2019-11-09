@@ -3,6 +3,7 @@ import 'firebase/auth';
 import $ from 'jquery';
 import smash from './smash';
 import singleBoard from '../../components/singleBoard/singleBoard';
+import boards from '../../components/boards/boards';
 
 const loginDiv = $('#loginDiv');
 const boardsDiv = $('#boards');
@@ -18,6 +19,7 @@ const checkLoginStatus = () => {
       logo.addClass('hide');
       smash.getCompleteBoards();
       singleBoard.makeTheBoards();
+      boards.printBoardOptions();
     } else {
       logo.removeClass('hide');
       loginDiv.removeClass('hide');

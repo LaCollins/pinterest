@@ -95,7 +95,7 @@ const singleBoardView = () => {
       boards.forEach((board) => {
         if (cardId === `${board.id}Card` || secondId === `${board.id}Card`) {
           domString += '<div id="buttonBox" class="container"><button class="btn btn-dark" id="goBack">All Boards</button></div>';
-          domString += `<div class="card col-12" id="${board.id}Card">`;
+          domString += `<div class="card col-12 mb-2" id="${board.id}Card">`;
           domString += `<h5 class="card-title">${board.name}</h5>`;
           domString += `<div id="${board.id}imgs" class="row"></div>`;
           domString += `<div class="card-body">
