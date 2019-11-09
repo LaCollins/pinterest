@@ -20,15 +20,7 @@ const deleteBoard = (e) => {
         });
       });
       // eslint-disable-next-line no-use-before-define
-      smash.getCompleteBoards(uid).then((boards) => {
-        if (boards.length >= 1) {
-          // eslint-disable-next-line no-use-before-define
-          makeTheBoards();
-          console.log(boards.length);
-        } else {
-          utilities.printToDom('board-section', 'You have no boards');
-        }
-      });
+      smash.getCompleteBoards(uid).then(() => makeTheBoards());
     })
     .catch((error) => console.error(error));
 };
@@ -69,21 +61,26 @@ const makeTheBoards = () => {
   const { uid } = firebase.auth().currentUser;
   smash.getCompleteBoards(uid)
     .then((boards) => {
-      let domString = '';
-      boards.forEach((board) => {
-        domString += `<div class="card col-4" id="${board.id}Card">`;
-        domString += `<h5 class="card-title">${board.name}</h5>`;
-        domString += `<div id="${board.id}imgs" class="thumbnails"></div>`;
-        domString += `<div class="card-body">
+      if (boards.length >= 1) {
+        let domString = '';
+        boards.forEach((board) => {
+          domString += `<div class="card col-4" id="${board.id}Card">`;
+          domString += `<h5 class="card-title">${board.name}</h5>`;
+          domString += `<div id="${board.id}imgs" class="thumbnails"></div>`;
+          domString += `<div class="card-body">
                       <p class="card-text">${board.description}</p>
                       <div class="card-footer"><button class="btn btn-dark delete-board" id="delete-${board.id}">Delete Board</button>
                       </div>
                     </div>`;
-        domString += '</div>';
+          domString += '</div>';
+          utilities.printToDom('board-section', domString);
+          pins.getMyPins(board.id);
+          $('.card').on('click', '.delete-board', deleteBoard);
+        });
+      } else {
+        const domString = '<h5 class="container">You have no boards</h5>';
         utilities.printToDom('board-section', domString);
-        pins.getMyPins(board.id);
-        $('.card').on('click', '.delete-board', deleteBoard);
-      });
+      }
     })
     .catch((error) => console.error(error));
 };

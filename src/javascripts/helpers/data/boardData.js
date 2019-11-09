@@ -7,16 +7,11 @@ const getBoardData = (userId) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/boards.json?orderBy="uid"&equalTo="${userId}"`)
     .then((response) => {
       const demBoards = response.data;
-      console.log(demBoards);
-      let boards = [];
-      if (demBoards === {}) {
-        boards = [];
-      } else {
-        Object.keys(demBoards).forEach((fbId) => {
-          demBoards[fbId].id = fbId;
-          boards.push(demBoards[fbId]);
-        });
-      }
+      const boards = [];
+      Object.keys(demBoards).forEach((fbId) => {
+        demBoards[fbId].id = fbId;
+        boards.push(demBoards[fbId]);
+      });
       resolve(boards);
     })
     .catch((error) => reject(error));
