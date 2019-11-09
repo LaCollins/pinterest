@@ -19,4 +19,6 @@ const getBoardData = (userId) => new Promise((resolve, reject) => {
 
 const deleteBoard = (boardId) => axios.delete(`${baseUrl}/boards/${boardId}.json`);
 
-export default { getBoardData, deleteBoard };
+const addNewBoard = (newBoard) => axios.post(`${baseUrl}/boards.json`, newBoard);
+
+export default { getBoardData, deleteBoard, addNewBoard };

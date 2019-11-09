@@ -7,6 +7,9 @@ import './boards.scss';
 import pins from '../pins/pins';
 import categoryData from '../../helpers/data/categoryData';
 import smash from '../../helpers/data/smash';
+import singleBoard from '../singleBoard/singleBoard';
+import uidData from '../../helpers/data/uidData';
+import boardData from '../../helpers/data/boardData';
 
 
 const loginDiv = $('#loginDiv');
@@ -40,12 +43,17 @@ const logoutEvent = () => {
 
 const printBoards = () => {
   let domString = '<h1>Boards</h1>';
-  domString += `<button type="button" class="btn btn-dark m-2" data-toggle="modal" data-target="#exampleModal">
-  Create Pin
+  domString += `<button type="button" class="btn btn-dark m-2 col-4" data-toggle="modal" data-target="#exampleModal">
+  Create New Pin
+  </button>`;
+  domString += `<button type="button" class="btn btn-dark m-2 col-4" data-toggle="modal" data-target="#exampleModal2">
+  Create New Board
   </button>`;
   domString += '<div id="board-section" class="d-flex flex-wrap"></div>';
   utilities.printToDom('boards', domString);
   $('#add-new-pin').click(pins.createPin);
+  // eslint-disable-next-line no-use-before-define
+  $('#add-new-board').click(createBoard);
 };
 
 const printCategoryOptions = () => {
@@ -69,6 +77,32 @@ const printBoardOptions = () => {
         domString += `<option value="${board.id}">${board.name}</option>`;
       });
       utilities.printToDom('inlineFormCustomSelect2', domString);
+    })
+    .catch((error) => console.error(error));
+};
+
+const createBoard = (e) => {
+  e.stopImmediatePropagation();
+  const { uid } = firebase.auth().currentUser;
+  let auth = '';
+  let newBoard = {};
+  uidData.getUidData(uid)
+    .then((response) => {
+      auth = response[0].id;
+      newBoard = {
+        name: $('#board-name').val(),
+        uid: auth,
+        isPrivate: $('input[name="gridRadios"]:checked').val(),
+        description: $('#board-description').val(),
+      };
+      boardData.addNewBoard(newBoard)
+        .then(() => {
+          $('#exampleModal2').modal('hide');
+          // eslint-disable-next-line no-use-before-define
+          singleBoard.makeTheBoards();
+          printBoardOptions();
+        })
+        .catch((error) => console.error(error));
     })
     .catch((error) => console.error(error));
 };
