@@ -8,6 +8,33 @@ import pins from '../pins/pins';
 import pinData from '../../helpers/data/pinData';
 import boardData from '../../helpers/data/boardData';
 
+const openPin = (e) => {
+  const pinId = e.target.parentElement.id.split('open-')[1];
+  let domString = '';
+  pinData.getAllPins()
+    .then((myPins) => {
+      myPins.forEach((pin) => {
+        if (pinId === pin.id) {
+          domString = `
+        <div class="modal-header">
+          <h5 class="modal-title">${pin.name}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+         </div>
+        <div class="modal-body" id="modal-body">
+          <div class="card-body"><img class="card-img" src="${pin.imageUrl}"><a href="${pin.siteUrl}">Go To the Website</a>
+          <p>${pin.description}</p></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>`;
+          utilities.printToDom('modalContainer', domString);
+        }
+      });
+    })
+    .catch((error) => console.error(error));
+};
 
 const deleteBoard = (e) => {
   e.stopImmediatePropagation();
@@ -51,6 +78,7 @@ const deletePin = (e) => {
             pins.getMyPins(board.id);
             $('.col-12').on('click', '.imgDelete', deletePin);
             $('.card').on('click', '.delete-board', deleteBoard);
+            $('img').on('click', openPin);
           }
         })
           .catch((error) => console.error(error));
@@ -109,6 +137,7 @@ const singleBoardView = () => {
           pins.getMyPins(board.id);
           $('.col-12').on('click', '.imgDelete', deletePin);
           $('.card').on('click', '.delete-board', deleteBoard);
+          $('.card').on('click', '.pinButton', openPin);
         }
       });
     });
