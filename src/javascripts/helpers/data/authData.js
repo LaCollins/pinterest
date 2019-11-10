@@ -19,7 +19,7 @@ const checkLoginStatus = () => {
       logo.addClass('hide');
       smash.getCompleteBoards();
       singleBoard.makeTheBoards();
-      boards.printBoardOptions();
+      boards.printBoardOptions('inlineFormCustomSelect2');
     } else {
       logo.removeClass('hide');
       loginDiv.removeClass('hide');

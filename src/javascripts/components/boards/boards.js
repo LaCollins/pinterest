@@ -10,6 +10,7 @@ import smash from '../../helpers/data/smash';
 import singleBoard from '../singleBoard/singleBoard';
 import uidData from '../../helpers/data/uidData';
 import boardData from '../../helpers/data/boardData';
+import pinData from '../../helpers/data/pinData';
 
 
 const loginDiv = $('#loginDiv');
@@ -54,6 +55,8 @@ const printBoards = () => {
   $('#add-new-pin').click(pins.createPin);
   // eslint-disable-next-line no-use-before-define
   $('#add-new-board').click(createBoard);
+  // eslint-disable-next-line no-use-before-define
+  $('#pinModal').on('click', '.editButton', editPin);
 };
 
 const printCategoryOptions = () => {
@@ -68,7 +71,7 @@ const printCategoryOptions = () => {
     .catch((error) => console.error(error));
 };
 
-const printBoardOptions = () => {
+const printBoardOptions = (divToPrintTo) => {
   const { uid } = firebase.auth().currentUser;
   let domString = '<option selected>Choose...</option>';
   smash.getCompleteBoards(uid)
@@ -76,7 +79,7 @@ const printBoardOptions = () => {
       boards.forEach((board) => {
         domString += `<option value="${board.id}">${board.name}</option>`;
       });
-      utilities.printToDom('inlineFormCustomSelect2', domString);
+      utilities.printToDom(divToPrintTo, domString);
     })
     .catch((error) => console.error(error));
 };
@@ -100,10 +103,50 @@ const createBoard = (e) => {
           $('#exampleModal2').modal('hide');
           // eslint-disable-next-line no-use-before-define
           singleBoard.makeTheBoards();
-          printBoardOptions();
+          printBoardOptions('inlineFormCustomSelect2');
         })
         .catch((error) => console.error(error));
     })
+    .catch((error) => console.error(error));
+};
+
+
+const editPin = (e) => {
+  e.preventDefault();
+  const pinId = $('#editDiv').children('button')[0].id;
+  const domString = `<button type="button" class="btn btn-dark update-board" id="${pinId}">Save Changes</button>`;
+  utilities.printToDom('editDiv', domString);
+  const domString2 = `
+    <form>
+      <div class="form-row align-items-center">
+        <div class="col-auto my-1" id="boardOptions">  <label class="mr-sm-1" for="inlineFormCustomSelect3">Board</label>
+          <select class="custom-select mr-sm-1 newBoardSelection" id="inlineFormCustomSelect3">
+          </select>
+        </div>
+      </div>
+    </form>`;
+  utilities.printToDom('boardLocation', domString2);
+  printBoardOptions('inlineFormCustomSelect3');
+  // eslint-disable-next-line no-use-before-define
+  $('#pinModal').on('click', '.update-board', updatePin);
+};
+
+const updatePin = (e) => {
+  const { uid } = firebase.auth().currentUser;
+  const pinId = e.target.id.split('edit-')[1];
+  const boardId = $('#inlineFormCustomSelect3').val();
+  pinData.changeBoard(pinId, boardId).then(() => {
+    singleBoard.editButton(pinId);
+    singleBoard.makeTheBoards();
+    smash.getCompleteBoards(uid).then((boards) => {
+      boards.forEach((board) => {
+        if (board.id === boardId) {
+          const domString3 = `<p><b>Board:</b> ${board.name}</p>`;
+          utilities.printToDom('boardLocation', domString3);
+        }
+      });
+    });
+  })
     .catch((error) => console.error(error));
 };
 
