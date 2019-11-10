@@ -48,12 +48,12 @@ const getMyPins = (boardId) => new Promise((resolve, reject) => {
         if ($(`#${boardId}Card`).hasClass('col-12')) {
           domString += `
           <div class="single-pin"><p id="delete-${pin.id}" class="imgDelete hide">X</p>
-          <img src=${pin.imageUrl} class="card-img-top" alt="...">
+          <button data-toggle="modal" data-target="#pinModal" id="open-${pin.id}" class="btn pinButton"><img src=${pin.imageUrl} class="card-img-top" alt="${pin.description}"></button>
           </div>
           `;
         } else {
           domString += `
-      <img src=${pin.imageUrl} class="card-img-top" alt="...">`;
+      <img src=${pin.imageUrl} class="card-img-top" alt="${pin.description}">`;
         }
       } else {
         domString += '';

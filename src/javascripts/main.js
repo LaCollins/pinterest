@@ -10,6 +10,7 @@ import uidData from './helpers/data/uidData';
 import pinData from './helpers/data/pinData';
 
 import singleBoard from './components/singleBoard/singleBoard';
+import '@fortawesome/fontawesome-free/js/all';
 
 const init = () => {
   firebase.initializeApp(apiKeys.firebaseKeys);
