@@ -12,6 +12,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <div id="userName"></div>
         <div id="loginDiv"></div><div id="logoutDiv" class=" btn btn-dark hide">Logout</div>
       </nav>
       <div id="mainView">
@@ -22,6 +23,40 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content" id="modalContainer">
             
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="newUserModalLabel" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="newUserModalLabel">Please Create a New Account</h5>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="user-name">Name</label>
+                  <input type="text" class="form-control" id="user-name" placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                  <label for="email">E-Mail</label>
+                  <input type="text" class="form-control" id="email" placeholder="Enter Email">
+                </div>
+                <div class="form-group">
+                  <label for="user-image-url">Profile Image Url</label>
+                  <input type="text" class="form-control" id="user-image-url" placeholder="Enter Image Url">
+                </div>
+                <div class="form-group">
+                  <label for="location">Location</label>
+                  <input type="text" class="form-control" id="location" placeholder="Enter Your Location">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="add-new-profile">Save changes</button>
+            </div>
           </div>
         </div>
       </div>
