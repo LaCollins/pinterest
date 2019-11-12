@@ -134,8 +134,10 @@ const makeTheBoards = () => {
           utilities.printToDom('board-section', domString);
           pins.getMyPins(board.id);
           $('.card').on('click', '.delete-board', deleteBoard);
+          $('#createPinButton').attr('disabled', false);
         });
       } else {
+        $('#createPinButton').attr('disabled', true);
         const domString = '<h5 class="container">You have no boards</h5>';
         utilities.printToDom('board-section', domString);
       }

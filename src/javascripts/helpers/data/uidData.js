@@ -17,4 +17,6 @@ const getUidData = (userId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default { getUidData };
+const addNewAuth = (newUid) => axios.post(`${baseUrl}/authentication.json`, newUid);
+
+export default { getUidData, addNewAuth };

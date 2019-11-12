@@ -11,6 +11,8 @@ import singleBoard from '../singleBoard/singleBoard';
 import uidData from '../../helpers/data/uidData';
 import boardData from '../../helpers/data/boardData';
 import pinData from '../../helpers/data/pinData';
+import users from '../users/users';
+import home from '../home/home';
 
 
 const loginDiv = $('#loginDiv');
@@ -38,13 +40,14 @@ const logoutEvent = () => {
         logoutButton.addClass('hide');
         logoDiv.removeClass('hide');
         loginDiv.removeClass('hide');
+        home.printMainPage();
       }).catch((err) => console.error('You are still logged in', err));
   });
 };
 
 const printBoards = () => {
   let domString = '<h1>Boards</h1>';
-  domString += `<button type="button" class="btn btn-dark m-2 col-4" data-toggle="modal" data-target="#exampleModal">
+  domString += `<button type="button" class="btn btn-dark m-2 col-4" data-toggle="modal" data-target="#exampleModal" id="createPinButton">
   Create New Pin
   </button>`;
   domString += `<button type="button" class="btn btn-dark m-2 col-4" data-toggle="modal" data-target="#exampleModal2">
@@ -55,6 +58,7 @@ const printBoards = () => {
   $('#add-new-pin').click(pins.createPin);
   // eslint-disable-next-line no-use-before-define
   $('#add-new-board').click(createBoard);
+  $('#add-new-profile').click(users.createUser);
   // eslint-disable-next-line no-use-before-define
   $('#pinModal').on('click', '.editButton', editPin);
 };
