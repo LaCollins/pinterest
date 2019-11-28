@@ -180,6 +180,8 @@ const returnToMain = () => {
     const target = e.target.id;
     if (target === 'goBack' || target === 'sBrand') {
       makeTheBoards();
+      $('#profile').addClass('hide');
+      $('#boards').removeClass('hide');
     }
   });
 };

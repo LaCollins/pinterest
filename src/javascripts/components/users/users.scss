@@ -1,0 +1,23 @@
+.buttonCont {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#profileContainer {
+  display: flex;
+  justify-content: center;
+  .userProfileCard {
+    margin: 2em;
+    text-align: right;
+    max-width: 50%;
+
+    .card-body {
+      margin-top: 25%;
+    }
+  }
+
+  img {
+    border-radius: 10em;
+    border: 2px solid black;
+  }
+}
