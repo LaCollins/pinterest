@@ -42,6 +42,7 @@ const logoutEvent = () => {
         loginDiv.removeClass('hide');
         $('userProfileIcon').addClass('hide');
         home.printMainPage();
+        $('#profile').addClass('hide');
       }).catch((err) => console.error('You are still logged in', err));
   });
 };
