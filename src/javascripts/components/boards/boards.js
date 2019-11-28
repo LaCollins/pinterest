@@ -43,6 +43,7 @@ const logoutEvent = () => {
         home.printMainPage();
         $('#profile').addClass('hide');
         $('#userProfileIcon').addClass('hide');
+        utilities.printToDom('board-section', '');
       }).catch((err) => console.error('You are still logged in', err));
   });
 };
