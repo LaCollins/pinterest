@@ -40,9 +40,9 @@ const logoutEvent = () => {
         logoutButton.addClass('hide');
         logoDiv.removeClass('hide');
         loginDiv.removeClass('hide');
-        $('userProfileIcon').addClass('hide');
         home.printMainPage();
         $('#profile').addClass('hide');
+        $('#userProfileIcon').addClass('hide');
       }).catch((err) => console.error('You are still logged in', err));
   });
 };
@@ -105,6 +105,7 @@ const createBoard = (e) => {
           isPrivate: $('input[name="gridRadios"]:checked').val(),
           description: $('#board-description').val(),
         };
+        console.log(newBoard);
         boardData.addNewBoard(newBoard)
           .then(() => {
             $('#exampleModal2').modal('hide');
