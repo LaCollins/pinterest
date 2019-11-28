@@ -127,9 +127,9 @@ const makeTheBoards = () => {
           domString += `<div id="${board.id}imgs" class="thumbnails"></div>`;
           domString += `<div class="card-body">
                       <p class="card-text">${board.description}</p>
-                      <div class="card-footer"><button class="btn btn-dark delete-board" id="delete-${board.id}">Delete Board</button>
                       </div>
-                    </div>`;
+                      <div class="card-footer"><button class="btn btn-dark delete-board" id="delete-${board.id}">Delete Board</button>
+                      </div>`;
           domString += '</div>';
           utilities.printToDom('board-section', domString);
           pins.getMyPins(board.id);
@@ -160,9 +160,9 @@ const singleBoardView = () => {
           domString += `<div id="${board.id}imgs" class="row"></div>`;
           domString += `<div class="card-body">
                         <p class="card-text">${board.description}</p>
-                        <div class="card-footer"><button class="btn btn-dark delete-board" id="delete-${board.id}">Delete Board</button>
                         </div>
-                      </div>`;
+                        <div class="card-footer"><button class="btn btn-dark delete-board" id="delete-${board.id}">Delete Board</button>
+                        </div>`;
           domString += '</div>';
           utilities.printToDom('board-section', domString);
           pins.getMyPins(board.id);
