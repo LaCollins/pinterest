@@ -6,6 +6,7 @@ import utilities from '../../helpers/utilities';
 import uidData from '../../helpers/data/uidData';
 import userData from '../../helpers/data/userData';
 
+
 const printUserName = () => {
   const { uid } = firebase.auth().currentUser;
   let domString = 'Hello, ';
@@ -41,25 +42,27 @@ const createUser = (e) => {
   const newAuth = {
     uid,
   };
-  uidData.addNewAuth(newAuth)
-    .then(() => {
-      uidData.getUidData(uid)
-        .then((response) => {
-          const userAuth = response[0].id;
-          const newUser = {
-            name: $('#user-name').val(),
-            imageUrl: $('#user-image-url').val(),
-            email: $('#email').val(),
-            location: $('#location').val(),
-            joinDate: Date($.now()),
-            uid: userAuth,
-          };
-          userData.addNewUserProfile(newUser);
-          $('#newUserModal').modal('hide');
-          printUserName();
-        });
-    })
-    .catch((error) => console.error(error));
+  if ($('#user-name').val() !== '' && $('#user-image-url').val() !== '' && $('#email').val() !== '' && $('#location').val() !== '') {
+    uidData.addNewAuth(newAuth)
+      .then(() => {
+        uidData.getUidData(uid)
+          .then((response) => {
+            const userAuth = response[0].id;
+            const newUser = {
+              name: $('#user-name').val(),
+              imageUrl: $('#user-image-url').val(),
+              email: $('#email').val(),
+              location: $('#location').val(),
+              joinDate: Date($.now()),
+              uid: userAuth,
+            };
+            userData.addNewUserProfile(newUser);
+            $('#newUserModal').modal('hide');
+            printUserName();
+          });
+      })
+      .catch((error) => console.error(error));
+  }
 };
 
 

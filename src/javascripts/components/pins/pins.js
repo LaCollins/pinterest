@@ -16,27 +16,29 @@ const toggleHideOnHover = () => {
 const createPin = (e) => {
   e.stopImmediatePropagation();
   const boardId = $('#inlineFormCustomSelect2').val();
-  const newPin = {
-    name: $('#pin-name').val(),
-    imageUrl: $('#image-url').val(),
-    siteUrl: $('#site-url').val(),
-    description: $('#pin-description').val(),
-    categoryId: $('#inlineFormCustomSelect').val(),
-    boardId,
-  };
-  pinData.addNewPin(newPin)
-    .then(() => {
-      $('#exampleModal').modal('hide');
-      // eslint-disable-next-line no-use-before-define
-      getMyPins(boardId);
-    })
-    .catch((error) => console.error(error));
-  $('#pin-name').val('');
-  $('#image-url').val('');
-  $('#site-url').val('');
-  $('#pin-description').val('');
-  $('#inlineFormCustomSelect').val('Choose...');
-  $('#inlineFormCustomSelect2').val('Choose...');
+  if ($('#pin-name').val() !== '' && boardId !== 'Choose...' && $('#image-url').val() !== '' && $('#site-url').val() !== '' && $('#pin-description').val() !== '' && $('#inlineFormCustomSelect').val() !== 'Choose...') {
+    const newPin = {
+      name: $('#pin-name').val(),
+      imageUrl: $('#image-url').val(),
+      siteUrl: $('#site-url').val(),
+      description: $('#pin-description').val(),
+      categoryId: $('#inlineFormCustomSelect').val(),
+      boardId,
+    };
+    pinData.addNewPin(newPin)
+      .then(() => {
+        $('#exampleModal').modal('hide');
+        // eslint-disable-next-line no-use-before-define
+        getMyPins(boardId);
+      })
+      .catch((error) => console.error(error));
+    $('#pin-name').val('');
+    $('#image-url').val('');
+    $('#site-url').val('');
+    $('#pin-description').val('');
+    $('#inlineFormCustomSelect').val('Choose...');
+    $('#inlineFormCustomSelect2').val('Choose...');
+  }
 };
 
 
