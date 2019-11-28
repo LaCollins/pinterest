@@ -105,7 +105,6 @@ const createBoard = (e) => {
           isPrivate: $('input[name="gridRadios"]:checked').val(),
           description: $('#board-description').val(),
         };
-        console.log(newBoard);
         boardData.addNewBoard(newBoard)
           .then(() => {
             $('#exampleModal2').modal('hide');
