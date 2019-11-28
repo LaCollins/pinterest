@@ -17,7 +17,7 @@ const getUserData = (userAuth) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-// const updateProfile = (userId, updatedUser) => axios.put(`${baseUrl}/users/${userId}.json`, updatedUser);
+const updateProfile = (userId, updatedUser) => axios.put(`${baseUrl}/users/${userId}.json`, updatedUser);
 
 const updateUserInfo = (userId, newInfo) => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/users/${userId}.json`)
@@ -27,11 +27,10 @@ const updateUserInfo = (userId, newInfo) => new Promise((resolve, reject) => {
       userObject.email = newInfo.email;
       userObject.imageUrl = newInfo.imageUrl;
       userObject.location = newInfo.location;
-      console.log(userId, userObject);
-      // updateProfile(dinoId, dinoObject)
-      // .then(() => {
-      //   resolve();
-      // });
+      updateProfile(userId, userObject)
+        .then(() => {
+          resolve();
+        });
     })
     .catch((error) => reject(error));
 });

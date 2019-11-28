@@ -14,18 +14,20 @@ const swapToBoardView = () => {
 const updateProfile = (e) => {
   e.stopImmediatePropagation();
   const { uid } = firebase.auth().currentUser;
+  const updatedUser = {
+    name: $('#new-user-name').val(),
+    imageUrl: $('#new-user-image-url').val(),
+    email: $('#new-email').val(),
+    location: $('#new-location').val(),
+  };
   uidData.getUidData(uid)
     .then((response) => {
       const userAuth = response[0].id;
       userData.getUserData(userAuth).then((user) => {
-        const updatedUser = {
-          name: $('#new-user-name').val(),
-          imageUrl: $('#new-user-image-url').val(),
-          email: $('#new-email').val(),
-          location: $('#new-location').val(),
-        };
-        console.log(user.id, updatedUser);
-      // userData.updateUserInfo(userAuth, updatedUser);
+        const userId = user[0].id;
+        userData.updateUserInfo(userId, updatedUser)
+          // eslint-disable-next-line no-use-before-define
+          .then(() => viewProfile());
       });
     }).catch((error) => console.error(error));
 };
@@ -40,22 +42,26 @@ const profileEdit = () => {
   <form>
     <div class="form-group">
       <label for="user-name">Name</label>
-      <input type="text" class="form-control" id="new-user-name" value="${user[0].name}" required>
+      <input type="text" class="form-control" id="new-user-name" required>
     </div>
     <div class="form-group">
       <label for="email">E-Mail</label>
-      <input type="text" class="form-control" id="new-email" value="${user[0].email}" required>
+      <input type="text" class="form-control" id="new-email" required>
     </div>
     <div class="form-group">
       <label for="user-image-url">Profile Image Url</label>
-      <input type="text" class="form-control" id="new-user-image-url" value="${user[0].imageUrl}" required>
+      <input type="text" class="form-control" id="new-user-image-url" required>
     </div>
     <div class="form-group">
       <label for="location">Location</label>
-      <input type="text" class="form-control" id="new-location" value="${user[0].location}" required>
+      <input type="text" class="form-control" id="new-location" required>
     </div>
   </form>`;
         utilities.printToDom('profileData', domString);
+        $('#new-user-name').val(`${user[0].name}`);
+        $('#new-email').val(`${user[0].email}`);
+        $('#new-user-image-url').val(`${user[0].imageUrl}`);
+        $('#new-location').val(`${user[0].location}`);
       });
     })
     .catch((error) => console.error(error));
