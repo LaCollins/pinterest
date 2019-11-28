@@ -11,6 +11,59 @@ const swapToBoardView = () => {
   $('#boards').removeClass('hide');
 };
 
+const updateProfile = (e) => {
+  e.stopImmediatePropagation();
+  const { uid } = firebase.auth().currentUser;
+  uidData.getUidData(uid)
+    .then((response) => {
+      const userAuth = response[0].id;
+      userData.getUserData(userAuth).then((user) => {
+        const updatedUser = {
+          name: $('#new-user-name').val(),
+          imageUrl: $('#new-user-image-url').val(),
+          email: $('#new-email').val(),
+          location: $('#new-location').val(),
+        };
+        console.log(user.id, updatedUser);
+      // userData.updateUserInfo(userAuth, updatedUser);
+      });
+    }).catch((error) => console.error(error));
+};
+
+const profileEdit = () => {
+  const { uid } = firebase.auth().currentUser;
+  uidData.getUidData(uid)
+    .then((response) => {
+      const userAuth = response[0].id;
+      userData.getUserData(userAuth).then((user) => {
+        const domString = `
+  <form>
+    <div class="form-group">
+      <label for="user-name">Name</label>
+      <input type="text" class="form-control" id="new-user-name" value="${user[0].name}" required>
+    </div>
+    <div class="form-group">
+      <label for="email">E-Mail</label>
+      <input type="text" class="form-control" id="new-email" value="${user[0].email}" required>
+    </div>
+    <div class="form-group">
+      <label for="user-image-url">Profile Image Url</label>
+      <input type="text" class="form-control" id="new-user-image-url" value="${user[0].imageUrl}" required>
+    </div>
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input type="text" class="form-control" id="new-location" value="${user[0].location}" required>
+    </div>
+  </form>`;
+        utilities.printToDom('profileData', domString);
+      });
+    })
+    .catch((error) => console.error(error));
+  $('#editProfile').html('Save Changes');
+  $('#editProfile').addClass('saveProfileChanges');
+  $('body').on('click', '.saveProfileChanges', updateProfile);
+};
+
 const viewProfile = () => {
   const { uid } = firebase.auth().currentUser;
   let domString = '';
@@ -23,7 +76,7 @@ const viewProfile = () => {
           <div id="profileContainer">
             <div class="card mb-3 userProfileCard">
             <div class="row no-gutters">
-              <div class="col-6">
+              <div class="col-6" id="profileData">
                 <div class="card-body">
                   <h5 class="card-title">${user[0].name}</h5>
                   <p class="card-text"><strong>Home Town:</strong> ${user[0].location}</p>
@@ -34,11 +87,14 @@ const viewProfile = () => {
                 <img src="${user[0].imageUrl}" class="card-img" alt="${user[0].name}">
               </div>
             </div>
+            <div class="card-footer profileEdit"><button class="btn btn-dark" id="editProfile">Edit Profile</button>
+            </div>
           </div>
           </div>`;
         utilities.printToDom('profile', domString);
         $('#profile').removeClass('hide');
         $('#boards').addClass('hide');
+        $('body').on('click', '#editProfile', profileEdit);
       });
     })
     .catch((error) => console.error(error));

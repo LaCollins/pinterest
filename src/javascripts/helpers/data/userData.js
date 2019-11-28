@@ -17,6 +17,25 @@ const getUserData = (userAuth) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+// const updateProfile = (userId, updatedUser) => axios.put(`${baseUrl}/users/${userId}.json`, updatedUser);
+
+const updateUserInfo = (userId, newInfo) => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/users/${userId}.json`)
+    .then((result) => {
+      const userObject = { ...result.data };
+      userObject.name = newInfo.name;
+      userObject.email = newInfo.email;
+      userObject.imageUrl = newInfo.imageUrl;
+      userObject.location = newInfo.location;
+      console.log(userId, userObject);
+      // updateProfile(dinoId, dinoObject)
+      // .then(() => {
+      //   resolve();
+      // });
+    })
+    .catch((error) => reject(error));
+});
+
 const addNewUserProfile = (newUser) => axios.post(`${baseUrl}/users.json`, newUser);
 
-export default { getUserData, addNewUserProfile };
+export default { getUserData, addNewUserProfile, updateUserInfo };
