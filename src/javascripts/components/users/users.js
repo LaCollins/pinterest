@@ -117,8 +117,7 @@ const printUserName = () => {
         domString += user[0].name;
         domString += '!';
         utilities.printToDom('userName', domString);
-      });
-      $('#userProfileIcon').removeClass('hide');
+      }).then(() => $('#userProfileIcon').removeClass('hide'));
     })
     .catch((error) => console.error(error));
   $('body').on('click', '#userProfileIcon', viewProfile);
@@ -158,9 +157,11 @@ const createUser = (e) => {
               joinDate: Date($.now()),
               uid: userAuth,
             };
-            userData.addNewUserProfile(newUser);
-            $('#newUserModal').modal('hide');
-            printUserName();
+            userData.addNewUserProfile(newUser)
+              .then(() => {
+                $('#newUserModal').modal('hide');
+                printUserName();
+              });
           });
       })
       .catch((error) => console.error(error));

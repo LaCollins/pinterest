@@ -112,8 +112,7 @@ const createBoard = (e) => {
             // eslint-disable-next-line no-use-before-define
             singleBoard.makeTheBoards();
             printBoardOptions('inlineFormCustomSelect2');
-          })
-          .catch((error) => console.error(error));
+          });
       })
       .catch((error) => console.error(error));
   }
