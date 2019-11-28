@@ -93,25 +93,27 @@ const createBoard = (e) => {
   const { uid } = firebase.auth().currentUser;
   let auth = '';
   let newBoard = {};
-  uidData.getUidData(uid)
-    .then((response) => {
-      auth = response[0].id;
-      newBoard = {
-        name: $('#board-name').val(),
-        uid: auth,
-        isPrivate: $('input[name="gridRadios"]:checked').val(),
-        description: $('#board-description').val(),
-      };
-      boardData.addNewBoard(newBoard)
-        .then(() => {
-          $('#exampleModal2').modal('hide');
-          // eslint-disable-next-line no-use-before-define
-          singleBoard.makeTheBoards();
-          printBoardOptions('inlineFormCustomSelect2');
-        })
-        .catch((error) => console.error(error));
-    })
-    .catch((error) => console.error(error));
+  if ($('#board-name').val() !== '' && $('#board-description').val() !== '') {
+    uidData.getUidData(uid)
+      .then((response) => {
+        auth = response[0].id;
+        newBoard = {
+          name: $('#board-name').val(),
+          uid: auth,
+          isPrivate: $('input[name="gridRadios"]:checked').val(),
+          description: $('#board-description').val(),
+        };
+        boardData.addNewBoard(newBoard)
+          .then(() => {
+            $('#exampleModal2').modal('hide');
+            // eslint-disable-next-line no-use-before-define
+            singleBoard.makeTheBoards();
+            printBoardOptions('inlineFormCustomSelect2');
+          })
+          .catch((error) => console.error(error));
+      })
+      .catch((error) => console.error(error));
+  }
 };
 
 
