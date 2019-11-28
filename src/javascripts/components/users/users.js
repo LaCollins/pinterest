@@ -19,10 +19,23 @@ const viewProfile = () => {
       const userAuth = response[0].id;
       userData.getUserData(userAuth).then((user) => {
         domString += '<div class="container buttonCont"><button class="btn btn-dark" id="backToBoards">Back to Boards</button></div>';
-        domString += '<div class="container" id="profileBox">';
-        domString += `<div class="row"><strong>User Name:</strong> ${user[0].name}</div>`;
-        domString += '<div class="row"></div>';
-        domString += '</div>';
+        domString += `
+          <div id="profileContainer">
+            <div class="card mb-3 userProfileCard">
+            <div class="row no-gutters">
+              <div class="col-6">
+                <div class="card-body">
+                  <h5 class="card-title">${user[0].name}</h5>
+                  <p class="card-text"><strong>Home Town:</strong> ${user[0].location}</p>
+                  <p class="card-text"><small class="text-muted">Member Since ${user[0].joinDate}</small></p>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <img src="${user[0].imageUrl}" class="card-img" alt="${user[0].name}">
+              </div>
+            </div>
+          </div>
+          </div>`;
         utilities.printToDom('profile', domString);
         $('#profile').removeClass('hide');
         $('#boards').addClass('hide');
