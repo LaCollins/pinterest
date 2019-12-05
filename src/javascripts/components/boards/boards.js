@@ -151,6 +151,7 @@ const updatePin = (e) => {
         if (board.id === boardId) {
           const domString3 = `<p><b>Board:</b> ${board.name}</p>`;
           utilities.printToDom('boardLocation', domString3);
+          $('#pinModal').modal('hide');
         }
       });
     });
